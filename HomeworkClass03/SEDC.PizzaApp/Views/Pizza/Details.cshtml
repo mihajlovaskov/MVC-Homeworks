@@ -1,0 +1,9 @@
+﻿@*@using SEDC.PizzaApp.Models.Domain*@
+@*@model Pizza*@
+
+@**<h2>Details for @Model.Name</h2>*@
+@*<p>Price: @Model.Price</p>*@
+
+@using SEDC.PizzaApp.Models.ViewModels
+@model PizzaViewModel
+<p>Id: @Model.Id, Name of the pizza: @Model.Name, pizza size: @Model.PizzaSize, price: @Model.Price</p>
