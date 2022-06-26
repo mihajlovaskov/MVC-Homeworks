@@ -1,0 +1,15 @@
+﻿
+<h4>===================Homework Task 2================</h4>
+
+<h4>@ViewData["Title"]</h4>
+<ul>
+    @foreach (var user in ViewBag.data)
+    {
+        <li>@user.FirstName @user.LastName</li>
+    }
+</ul>
+
+<h4>===================Homework Task 2================</h4>
+@* There are many other ways to handle the task properly (task: show a list of Users' full names in View by
+using some method in Home controller), but I decided to use the ViewBag solution as to repeat
+what was taught during Class 04*@

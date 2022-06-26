@@ -1,0 +1,38 @@
+﻿
+@model PizzaViewModel
+
+@*the content of _PizzaGreeting.cshtml will be replaced here*@
+<partial name="~/Views/Shared/Partials/_PizzaGreeting.cshtml"/>
+
+@*<h2>Details for @Model.Name</h2>
+<p>Price: @Model.Price</p>*@
+
+<h4>============Homework Task 1: =================</h4>
+
+<p>Name of the pizza: @Model.Name</p> 
+<p>Pizza price: @Model.Price</p>
+@if(Model.IsOnPromotion){
+    <h4>This pizza is on promotion!</h4>
+}
+else{
+    <h4>This pizza is not on promotion!</h4>
+}
+<h4>============Homework Task 1: =================</h4>
+@*
+The same functionality (adding h4 tag with information if the pizza is on promotion or not) can be achieved 
+with a shared partial view (named as, for example, _PizzaDetailPartial), that will have the following content:
+
+@model PizzaViewModel
+
+<h4>@(Model.IsOnPromotion ? "This pizza is on promotion!" : "This pizza is not on promotion!")</h4>
+
+In that case a "partial" tag will be required in this Pizza/Details/View:
+
+<partial name="~/Views/Shared/Partials/_PizzaDetailsPartial.cshtml"/>
+*@ 
+
+<h4>============Homework Task 3: =================</h4>
+
+<partial name="~/Views/Shared/Partials/_DetailsPizzaPartial.cshtml"/>
+
+<h4>============Homework Task 3: =================</h4>
