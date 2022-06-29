@@ -5,7 +5,7 @@ namespace SEDC.PizzaApp.Models.Mappers
 {
     public static class PizzaMapper
     {
-        public static PizzaViewModel ToPizzaViewModel(Pizza pizzaDb)
+        public static PizzaViewModel ToPizzaViewModel(this Pizza pizzaDb)
         {
             return new PizzaViewModel
             {

@@ -12,27 +12,5 @@ namespace SEDC.PizzaApp.Models.Domain
         public bool IsOnPromotion { get; set; }
         public PizzaSize PizzaSize { get; set; }
         public bool HasExtras { get; set; }
-
-        //using extension method, instead of PizzaMapper Class, for creating a mapper from Pizza model to Pizza View Model
-        public static PizzaViewModel PizzaModelToPizzaViewModel(Pizza pizzaDb)
-        {
-            return new PizzaViewModel
-            {
-                Id = pizzaDb.Id,
-                Name = pizzaDb.Name,
-                PizzaSize = pizzaDb.PizzaSize,
-                HasExtras = pizzaDb.HasExtras,
-                Price = CorrectionInPrice(pizzaDb)
-            };
-        }
-        public static decimal CorrectionInPrice(Pizza pizzaDb)
-        {
-            if (pizzaDb.HasExtras)
-            {
-                return pizzaDb.Price + 10;
-            }
-            else return pizzaDb.Price = pizzaDb.Price;
-        }
-
     }
 }
