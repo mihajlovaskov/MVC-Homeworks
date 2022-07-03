@@ -1,0 +1,15 @@
+﻿@using BurgerApp.Models.ViewModels
+
+
+@model OrderDetailsViewModel
+
+<hr />
+@Model.Id.
+
+    <div>
+        <p>Client name: @Model.FullName</p>
+        <p><label asp-for="BurgerName"></label>: @Html.DisplayFor(x => x.BurgerName)</p>
+        <p>Location: @Model.Location </p>
+        <p>Price: @Model.Price MKD </p>  
+        <p>Payment method: @Model.PaymentMethod</p> 
+    </div>

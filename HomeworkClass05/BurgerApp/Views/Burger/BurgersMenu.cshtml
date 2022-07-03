@@ -1,0 +1,49 @@
+﻿@using BurgerApp.Models.ViewModels
+
+
+@model List<BurgerViewModel>
+
+<a asp-controller="Burger" asp-action="CreateBurger">Create new burger for the menu</a>
+
+<hr />
+
+<h4>Burgers Menu:</h4>
+
+<hr />
+
+@{
+    @foreach (BurgerViewModel burger in Model)
+    {
+    <p>Burger name: @burger.Name</p>
+        @if (@burger.IsVegan)
+            {
+             <p>Vegan Burger!</p>
+            }
+            else 
+            {
+             <p>Burger is not vegan!</p>
+            }
+        @if (@burger.IsVegetarian)
+            {
+             <p>Vegetarian Burger!</p>
+            }
+            else 
+            {
+             <p>Burger is not vegetarian!</p>
+            }
+        @if (@burger.HasFries)
+        {
+            <p>Burger has fries!</p>
+        }
+        else
+        {
+            <p>Burger does not have fries!</p>
+        }
+        <p>Price: @burger.Price denars</p>
+        <a asp-controller="Burger" asp-action="EditBurger" asp-route-id="@burger.Id" >Edit</a>
+        <a asp-controller="Burger" asp-action="DeleteBurger" asp-route-id="@burger.Id">Delete</a>
+    <hr />
+    }
+}
+
+

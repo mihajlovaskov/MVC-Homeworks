@@ -1,0 +1,33 @@
+﻿@using BurgerApp.Models.Enums
+@using BurgerApp.Models.ViewModels
+
+
+@model OrderViewModel
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateOrderPost" method="post">
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label">Name and surname</label>
+                <input asp-for="FullName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">Address</label>
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BurgerName" class="control-label">Burger</label>
+                <select class="form-control" asp-for="BurgerName" asp-items="@(new SelectList(ViewBag.Burgers, "Name", "Name"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label">Delivery location</label>
+                <input asp-for="Location" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethod" class="control-label">Select payment method</label>
+                <select asp-for="PaymentMethod" class="form-control" asp-items="Html.GetEnumSelectList<PaymentMethod>()"></select>
+            </div>
+            <button type="submit" class="btn btn-default">Confirm order</button>
+        </form>
+    </div>
+</div>
