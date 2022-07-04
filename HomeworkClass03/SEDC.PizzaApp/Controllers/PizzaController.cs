@@ -11,20 +11,8 @@ namespace SEDC.PizzaApp.Controllers
         {
 
             List<Pizza> pizzaDb = StaticDb.Pizzas;
-            List<PizzaViewModel> pizzaViewModels = pizzaDb.Select(x => PizzaMapper.ToPizzaViewModel(x))
+            List<PizzaViewModel> pizzaViewModels = pizzaDb.Select(x => x.ToPizzaViewModel())
                 .ToList();
-            //return View(dbPizzas);
-            return View(pizzaViewModels);
-        }
-
-        //invoking the extension method that maps the Pizza model with the Pizza Model View
-        //inside a method which invokes the corresponding View. The Mapper file/class is not used... 
-        [Route("Extension")] 
-        public IActionResult GetPizzasExtensionMethod() 
-        { 
-            List<Pizza> pizzaDb = StaticDb.Pizzas;
-            List<PizzaViewModel> pizzaViewModels = pizzaDb.Select(x => Pizza.PizzaModelToPizzaViewModel(x))
-            .ToList();
             //return View(dbPizzas);
             return View(pizzaViewModels);
         }
@@ -42,7 +30,7 @@ namespace SEDC.PizzaApp.Controllers
                 //return RedirectToAction("Error");
                 return new EmptyResult();
             }
-            PizzaViewModel pizzaViewModels = PizzaMapper.ToPizzaViewModel(pizza);
+            PizzaViewModel pizzaViewModels = pizza.ToPizzaViewModel();
 
             return View(pizzaViewModels);
         }
