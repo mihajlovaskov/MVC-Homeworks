@@ -1,0 +1,101 @@
+﻿@model OrderViewModel
+@using System.Globalization;
+
+<h1>Details for order-id : #@Model.Id</h1>
+
+@if (!Model.IsOrderCompleted)
+{
+    <a asp-action="CompleteOrder" asp-controller="Order" asp-route-id="@Model.Id" class="btn btn-danger">Complete Order</a>
+}
+<h2 class="text-center mt-4">Customer Details</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Custommer Name</th>
+            <th scope="col">Custommer Address</th>
+            <th scope="col">Total Order price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.FirstName @Model.LastName</td>
+            <td>@Model.Address</td>
+            <td>@Model.TotalPrice.ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK"))</td>
+        </tr>
+    </tbody>
+</table>
+<hr />
+
+@if (Model.Burgers.Count > 0)
+{
+    <h2 class="text-center">Ordered Burgers</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity </th>
+                <th scope="col">Price</th>
+                <th scope="col">Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.Burgers)
+                {
+                    <tr>
+                        <td>@item.Burger.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                        <td>@((item.Quantity * item.Price).ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK")))</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Total Price For all items:</th>
+                <th></th>
+                <th></th>
+                <th>@(Model.Burgers.Sum( x => x.Price*x.Quantity).ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK")))</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@if (Model.Extras.Count > 0)
+{
+    <h2 class="text-center">Ordered Extras</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity </th>
+                <th scope="col">Price </th>
+                <th scope="col">Total Price </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var item in Model.Extras)
+                {
+                    <tr>
+                        <td>@item.Extra.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                        <td>@((item.Quantity * item.Price).ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK")))</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Total Price for all items</th>
+                <th></th>
+                <th></th>
+                <th>@(Model.Extras.Sum( x => x.Price * x.Quantity).ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK")))</th>
+            </tr>
+        </tfoot>
+    </table>
+}

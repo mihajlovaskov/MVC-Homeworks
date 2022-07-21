@@ -1,0 +1,14 @@
+﻿@model ExtraViewModel
+
+<h1>New extra</h1>
+<form asp-action="Create" asp-controller="Extra" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Name"></label>
+        <input asp-for="@Model.Name" type="text" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Price"></label>
+        <input asp-for="@Model.Price" type="number" step="any" class="form-control"/>
+    </div>
+    <button type="submit" class="btn btn-success form-group mt-3">Save</button>
+</form>

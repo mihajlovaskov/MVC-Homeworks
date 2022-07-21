@@ -1,0 +1,6 @@
+﻿@using System.Globalization;
+@model BurgerViewModel
+
+<h1>@Model.Name</h1>
+<p>@Model.Ingredients</p>
+<p>@Model.Price.ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK"))</p>

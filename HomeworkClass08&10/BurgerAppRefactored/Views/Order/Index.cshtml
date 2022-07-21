@@ -1,0 +1,45 @@
+﻿@using System.Globalization;
+@model List<OrderViewModel>
+
+<h1>All orders</h1>
+@{
+        decimal sum = 0;
+        foreach (var order in Model)
+        {
+            sum = sum + order.TotalPrice;
+        
+    
+        }
+        decimal average = sum/Model.Count();
+    <p>The average price of one order is: @average.ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK"))</p>
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Custommer Name</th>
+            <th scope="col">Custommer Address</th>
+            <th></th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @{
+            foreach (var order in Model)
+            {
+                    <tr>
+                        <th scope="row">@order.Id</th>
+                        <td>@order.FullName</td>
+                        <td>@order.Address</td>
+                        <td>
+                            <a asp-controller="Order" asp-action="Details" asp-route-id="@order.Id">View Order Details</a>
+                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id" class="btn @(order.IsOrderCompleted ? "btn-info disabled" : "btn-success")">@(order.IsOrderCompleted ? "Completed" : "Edit order")</a>
+                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id" class="btn btn-danger">Delete Order</a>
+                        </td>
+                    </tr>
+            }
+
+        }
+    </tbody>
+</table>

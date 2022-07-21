@@ -1,0 +1,28 @@
+﻿@model BurgerViewModel
+
+<h1>New burger</h1>
+<form asp-action="Create" asp-controller="Burger" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Name"></label>
+        <input asp-for="@Model.Name" type="text" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Ingredients"></label>
+        <input asp-for="@Model.Ingredients" type="text" class="form-control" value="" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.ImageUrl"></label>
+        <input asp-for="@Model.ImageUrl" type="text" class="form-control" value="" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.IsVegan" class="form-check-label"></label>
+        <input type="checkbox" asp-for="@Model.IsVegan" class="form-check-input"/>
+        <label asp-for="@Model.IsVegetarian" class="form-check-label mx-2"></label>
+        <input type="checkbox"  asp-for="@Model.IsVegetarian" class="form-check-input mx-2"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Price"></label>
+        <input asp-for="@Model.Price" type="number" step="any" class="form-control"/>
+    </div>
+    <button type="submit" class="btn btn-success form-group mt-3">Save</button>
+</form>

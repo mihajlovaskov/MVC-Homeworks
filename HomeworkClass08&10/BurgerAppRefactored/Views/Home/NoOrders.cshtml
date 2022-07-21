@@ -1,0 +1,22 @@
+﻿@model List<OrderViewModel>
+
+<h1>Counting Orders</h1>
+
+<table class="table table-striped">
+
+    <tbody>
+        <tr>
+            <td>Number of Orders</td>
+            <td>@Model.Count</td>
+        </tr>
+        <tr>
+            <td>Completed Orders</td>
+            <td>@Model.Where(x=> x.IsOrderCompleted).Count()</td>
+        </tr>
+        <tr>
+            <td>Pending Orders</td>
+            <td>@Model.Where(x => !x.IsOrderCompleted).Count()</td>
+        </tr>
+    </tbody>
+</table>
+

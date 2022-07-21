@@ -1,0 +1,60 @@
+﻿@model OrderViewModel
+@using System.Globalization;
+
+<h1>Order a burger</h1>
+
+<form asp-action="Create" asp-controller="Order" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address " class="form-control" />
+    </div>
+    <h2>Select Burgers</h2>
+    @{
+        @for (int i = 0; i < ViewBag.burgers.Count; i++)
+        {
+            <div class="form-group d-flex gap-5 align-items-center border border-secondary mb-2 px-5 py-2">
+                <input type="hidden" asp-for="@Model.Burgers[i].Burger.Id" value="@ViewBag.burgers[i].Id" />
+                <input type="hidden" asp-for="@Model.Burgers[i].Price" value="@ViewBag.burgers[i].Price">
+                <div>
+                    <label asp-for="@Model.Burgers[i].IsSelected" class="form-check-label">@ViewBag.burgers[i].Name</label>
+                    <input type="checkbox" asp-for="@Model.Burgers[i].IsSelected" class="form-check-input" />
+                </div>
+
+                <div>
+                    <label asp-for="@Model.Burgers[i].Quantity"></label>
+                    <input type="number" asp-for="@Model.Burgers[i].Quantity" />
+                </div>
+                <img src="@ViewBag.burgers[i].ImageUrl" alt="@ViewBag.burgers[i].Name" style="height:100px" />
+                <h3>@ViewBag.burgers[i].Price.ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK"))</h3>
+            </div>
+        }
+    }
+    <h2>Select Extras</h2>
+    @{
+        @for (int i = 0; i < ViewBag.extras.Count; i++)
+        {
+            <div class="form-group d-flex gap-5 align-items-center border border-secondary mb-2 px-5 py-2">
+                <input type="hidden" asp-for="@Model.Extras[i].Extra.Id" value="@ViewBag.extras[i].Id">
+                <input type="hidden" asp-for="@Model.Extras[i].Price" value="@ViewBag.extras[i].Price">
+                <div>
+                    <label asp-for="@Model.Extras[i].IsSelected" class="form-check-label">@ViewBag.extras[i].Name</label>
+                    <input type="checkbox" asp-for="@Model.Extras[i].IsSelected" class="form-check-input" />
+                </div>
+
+                <div>
+                    <label asp-for="@Model.Extras[i].Quantity"></label>
+                    <input type="number" asp-for="@Model.Extras[i].Quantity" />
+                </div>
+
+                <h3>@ViewBag.extras[i].Price.ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK"))</h3>
+            </div>
+        }
+    }
+    <button type="submit" class="btn btn-success">Make your order</button>
+</form>

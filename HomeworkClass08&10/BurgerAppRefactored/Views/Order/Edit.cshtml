@@ -1,0 +1,64 @@
+﻿@model OrderViewModel
+@using System.Globalization;
+
+<h1>Edit your Order</h1>
+
+<form asp-action="Edit" asp-controller="Order" method="post">
+    <input type="hidden" asp-for="Id" />
+    <a asp-action="Create" asp-controller="BurgerOrderItem" asp-route-id="@Model.Id">Add new buger</a>
+    <a asp-action="Create" asp-controller="ExtraOrderItem" asp-route-id="@Model.Id">Add new extra</a>
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address " class="form-control" />
+    </div>
+
+    <h2>All Items In The Order:</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var burger in Model.Burgers)
+                {
+                    <tr>
+                        <td>@burger.Burger.Name</td>
+                        <td>@burger.Quantity</td>
+                        <td>@burger.Price</td>
+                        <td>
+                            <a asp-controller="BurgerOrderItem" asp-action="Edit" asp-route-id="@burger.Id" class="btn btn-success">Edit</a>
+                            <a asp-controller="BurgerOrderItem" asp-action="Delete" asp-route-id="@burger.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+                foreach (var extra in Model.Extras)
+                {
+                    <tr>
+                        <td>@extra.Extra.Name</td>
+                        <td>@extra.Quantity</td>
+                        <td>@extra.Price</td>
+                        <td>
+                            <a asp-controller="ExtraOrderItem" asp-action="Edit" asp-route-id="@extra.Id" class="btn btn-success">Edit</a>
+                            <a asp-controller="ExtraOrderItem" asp-action="Delete" asp-route-id="@extra.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success">Save changes</button>
+</form>

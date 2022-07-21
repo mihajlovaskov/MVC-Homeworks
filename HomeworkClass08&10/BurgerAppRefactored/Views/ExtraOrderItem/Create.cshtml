@@ -1,0 +1,17 @@
+﻿@model ExtraOrderItemViewModel
+
+<form asp-action="Create" asp-controller="ExtraOrderItem" method="post">
+    <input type="hidden" asp-for="OrderId"/>
+    <div class="form-group">
+        <label asp-for="Extra.Id"></label>
+        <select asp-for="Extra.Id" asp-items="@(IEnumerable<SelectListItem>)ViewBag.extras">
+            <option>Select new extra</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" type="number"/>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add new item</button>
+</form>

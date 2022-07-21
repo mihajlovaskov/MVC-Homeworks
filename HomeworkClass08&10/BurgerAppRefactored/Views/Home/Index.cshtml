@@ -1,0 +1,18 @@
+﻿@using BurgerAppRefactored.ViewModels
+@model HomeViewModel
+
+    <div class="text-center">
+    <h1 class="display-4">Welcome to our BurgerAppRefactored</h1>
+    <div class="container">
+       <div>
+          <img src="https://www.hardees.com/-/media/project/cke/hardees/double-cheeseburger-705-x-401.jpgs" alt="@Model.MostPopularBurger" style="height:400px; width:100%;">        
+       </div>
+    </div>
+    <h4>@Model.MostPopularBurger is currently our most popular burger</h4>
+      <p class="ms-auto">
+         <a class="btn btn-success" asp-area="" asp-controller="Burger" asp-action="Index">Go to our menu</a>
+      </p>
+    </div>
+
+    
+

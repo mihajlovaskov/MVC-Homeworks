@@ -1,0 +1,18 @@
+﻿@model BurgerOrderItemViewModel
+
+<form asp-action="Create" asp-controller="BurgerOrderItem" method="post">
+    <input type="hidden" asp-for="OrderId"/>
+    
+    <div class="form-group">
+        <label asp-for="Burger.Id"></label>
+        <select asp-for="Burger.Id" asp-items="@(IEnumerable<SelectListItem>)ViewBag.burgers">
+            <option>Select new burger</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" type="number"/>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add new item</button>
+</form>

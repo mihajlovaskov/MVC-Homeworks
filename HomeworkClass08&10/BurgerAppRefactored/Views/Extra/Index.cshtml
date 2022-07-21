@@ -1,0 +1,23 @@
+﻿@using System.Globalization;
+@model List<ExtraViewModel>
+
+<h1 class="text-center my-4">Extras</h1>
+<a asp-controller="Extra" asp-action="Create" class="btn btn-success w-25 mb-4" >Create new extra</a>
+<div class="row d-flex justify-content-evenly g-4">
+    @{
+        foreach (var extra in Model)
+        {
+            <div class="card col-3 mx-3 px-0">
+                
+                <div class="card-body">
+                    <h5 class="card-title">@extra.Name</h5>
+                    <p class="card-text">@extra.Price.ToString("C" , CultureInfo.CreateSpecificCulture("mk-MK"))</p>
+                    <div class="d-flex align-center justify-content-around">
+                        <a asp-action="Edit" asp-controller="Extra" asp-route-id="@extra.Id" class="btn btn-success">Edit</a>
+                        <a asp-action="Delete" asp-controller="Extra" asp-route-id="@extra.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
